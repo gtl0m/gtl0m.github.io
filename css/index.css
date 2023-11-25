@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+body {
+    color: rgba(0, 0, 0, 0.799);
+    background-color: rgba(232, 232, 232, 0.231);
+    font-family: 'Ubuntu', sans-serif;
+    margin-bottom: 100px;
+}
+
+.center {
+    margin-left: 5%;
+    width: 90%;
+    margin-right: 5%;
+}
+
+.title {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.title #light {
+    color: grey;
+}
+
+.title a {
+    margin-right: 20px;
+    font-size: 1.17em;
+    color: rgba(0, 0, 0, 0.799);
+    text-decoration: none;
+}
+
+.title a:hover {
+    text-decoration: underline;
+}
+
+article {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+article a {
+    font-size: 1.17em;
+    color: grey;
+    text-decoration: none;
+}
+
+article a:hover {
+    color: rgba(0, 0, 0, 0.799);
+    transition: color .1s cubic-bezier(.68,.07,.68,.53)
+}
+
+.footer {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer a {
+    margin-right: 20px;
+    font-size: 1.17em;
+    color: rgba(0, 0, 0, 0.799);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer #special {
+    margin-right: 0;
+}
+
+.code {
+    /* font-family: 'Ubuntu Mono', monospace; */
+    font-size: 1em;
+    padding: 2px 4px;
+    background-color:rgba(224, 224, 224, 0.799);
+    border: 1px solid darkgray;
+    border-radius: 4px;
+}
+
+@media screen and (max-width: 900px) {
+    .main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: rgba(0, 0, 0, 0.868);
+    }
+
+    .title a {
+        color: rgb(190, 190, 190);
+    }
+
+    article {
+        color: rgb(190, 190, 190);
+    }
+
+    article a {
+        color: rgb(190, 190, 190);
+    }
+
+    article a:hover{
+        color: rgb(235, 235, 235);
+    }
+
+    .footer a {
+        color: rgb(190, 190, 190);
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}

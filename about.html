@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
+    <!-- <link href="https://fonts.googlefonts.cn/css?family=Ubuntu" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="css/about.css">
+    <link rel="shortcut icon" href="favicon.webp">
+    <title>About</title>
+</head>
+<body>
+    <div class="center">
+        <div class="title">
+            <h1>
+                <a href="index.html">Inner Quarters/</a><span id="light">About</span>
+            </h1>
+        </div>
+
+        <div class="main">
+            <p id="clock"><span id="runtime_span"></span></p>
+            <h2>Welcome!</h2>
+            <p>欢迎来到 Inner Quarters！这里的主人是 gtl0m，一名高二学生。</p>
+
+            <h2>About Me</h2>
+            <img src="http://ghchart.rshah.org/gtl0m"/>
+            <p>算是半个 Google 粉，目前手持 Pixel 4 xl。</p>
+            <p>如果想进一步了解我，<span class="code">? ? ?</span> 里有我的日常。</p>
+            <p><a href="mailto:renshibugan@outlook.com">renshibugan@outlook.com</a>&nbsp;&nbsp;请发邮箱联系~</p>
+            <p><a>SW-5670-2183-7429</a>&nbsp;&nbsp;欢迎加 switch 好友玩~</p>
+            <p>
+                目前常用设备列表
+            <ul>
+                <li>Google Pixel 4 xl</li>
+                <li>HP ZHAN 66 Pro 14 inch G5</li>
+                <li>Nintendo Switch Lite</li>
+                <li>Mi Smart Band 7</li>
+            </ul>
+            </p>
+            
+            <h2>About Here</h2>
+            <p><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">原创文章使用 CC BY-NC-SA 4.0</a></p>
+            <p>
+                <span class="code">Inner Quarters</span> 的名字来自《恶魔城：晓月圆舞曲》，
+                相应的日语为 <span class="code">幻夢宮</span>。这个地区给我的印象十分深刻，
+                然后我就拿来做了博客名。
+            </p>
+            <p>
+                博客是自己 <del>写</del> 糊的，托管于 GitHub。<del>批判性地吸收了</del> 
+                <a href="http://motherfuckingwebsite.com/" target="_blank">暴躁老哥的观点</a>，
+                <del>力图简洁</del>。
+            </p>
+            <p>
+                本博客在开发时使用了以下素材、（开源）项目，在此对这些素材、（开源）项目的开发者表示感谢。
+                    <ul>
+                        <li>giscus 评论系统</li>
+                        <li><del>Ubuntu 字体</del></li>
+                    </ul>
+            </p>
+        </div>
+
+        <div class="footer">
+            <a href="#top">Top</a>
+            <a href="index.html" id="special">Home</a>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function show_runtime() {
+            window.setTimeout("show_runtime()", 1000);
+            X = new Date("10/27/2022 12:00:00");
+            Y = new Date();
+            T = (Y.getTime() - X.getTime());
+            M = 24 * 60 * 60 * 1000;
+            a = T / M;
+            A = Math.floor(a);
+            b = (a - A) * 24;
+            B = Math.floor(b);
+            c = (b - B) * 60;
+            C = Math.floor((b - B) * 60);
+            D = Math.floor((c - C) * 60);
+            runtime_span.innerHTML = "|gtl0m's Inner Quarters : " + A + " days " + B + " hours " + C + " mins " + D + " secs|"
+        }
+        show_runtime();
+    </script>
+
+</body>
+</html>
