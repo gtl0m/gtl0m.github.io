@@ -1,0 +1,288 @@
+@charset "UTF-8";
+
+/* ====================
+   全局样式 (Global Styles)
+   ==================== */
+
+body {
+    /* 基础文本颜色：深灰色，具有一定透明度以融合背景 */
+    color: rgba(0, 0, 0, 0.799);
+    /* 基础背景颜色：非常浅的灰色，提供柔和的视觉效果 */
+    background-color: rgba(232, 232, 232, 0.231);
+    /* 字体栈：首选无衬线字体，如 Arial，确保跨平台的可读性 */
+    font-family: sans-serif, Arial;
+    /* 页面底部留白，防止内容紧贴底部 */
+    margin-bottom: 100px;
+}
+
+/* 所有标题标签 (h1-h6) 默认使用普通字重，避免过于粗重 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+
+/* 用于水平居中块级元素并设置其宽度 */
+.center {
+    margin-left: 5%;
+    width: 90%;
+    margin-right: 5%;
+}
+
+/* ====================
+   顶部标题区样式 (Header/Title Section Styles)
+   ==================== */
+
+.title {
+    /* 文本居中对齐 */
+    text-align: center;
+    /* 上下外边距，为标题区提供足够的空间 */
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* 标题区内具有 'light' id 的元素（如副标题），颜色为灰色 */
+.title #light {
+    color: grey;
+}
+
+/* 标题区内的链接样式 */
+.title a {
+    /* 链接之间右侧间隔 */
+    margin-right: 20px;
+    /* 字体大小，略大于普通文本 */
+    font-size: 1.17em;
+    /* 链接颜色：与主体文本颜色一致 */
+    color: rgba(0, 0, 0, 0.799);
+    /* 移除默认下划线 */
+    text-decoration: none;
+}
+
+/* 标题区链接鼠标悬停效果：显示下划线 */
+.title a:hover {
+    text-decoration: underline;
+}
+
+/* ====================
+   文章/内容区样式 (Article/Content Section Styles)
+   ==================== */
+
+article {
+    /* 文章内容居中对齐 */
+    text-align: center;
+    /* 文章底部外边距 */
+    margin-bottom: 20px;
+}
+
+/* 文章内的链接样式 */
+article a {
+    /* 字体大小，略大于普通文本 */
+    font-size: 1.17em;
+    /* 链接默认颜色为灰色 */
+    color: grey;
+    /* 移除默认下划线 */
+    text-decoration: none;
+}
+
+/* 文章链接鼠标悬停效果：颜色变为深灰色，带有平滑过渡 */
+article a:hover {
+    color: rgba(0, 0, 0, 0.799);
+    /* 过渡效果：0.1秒，使用 cubic-bezier 函数实现平滑动画 */
+    transition: color .1s cubic-bezier(.68,.07,.68,.53);
+}
+
+/* 主要内容区域 */
+.main {
+    /* 左右外边距，提供适度的阅读区域宽度 */
+    margin-left: 17%;
+    margin-right: 17%;
+    /* 行高，提高文本可读性 */
+    line-height: 1.7;
+}
+
+/* 主要内容区段落的底部外边距 */
+.main p {
+    margin-bottom: 1em;
+}
+
+/* 主要内容区加粗文本的字重 */
+.main b {
+    font-weight: bolder;
+}
+
+/* 主要内容区内链接的默认颜色 */
+.main a {
+    color: grey;
+    text-decoration: none;
+}
+
+/* 主要内容区内链接鼠标悬停效果：颜色变为深灰色，带有平滑过渡 */
+.main a:hover {
+    color: rgba(0, 0, 0, 0.799);
+    transition: color .1s cubic-bezier(.68,.07,.68,.53);
+}
+
+/* 主要内容区内图片的样式 */
+.main img {
+    /* 左右外边距，使图片在内容区内居中 */
+    margin-left: 10%;
+    width: 80%; /* 图片宽度 */
+    margin-right: 10%;
+    /* 上下外边距 */
+    margin-top: 1em;
+    margin-bottom: 1em;
+    /* 阴影效果，使图片有立体感 */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* 轻微圆角 */
+    border-radius: 4px;
+}
+
+/* 居中文本的通用类 */
+.mid {
+    text-align: center;
+}
+
+/* 具有 'clock' id 的元素（如果用于显示时钟等），文本居中 */
+#clock {
+    text-align: center;
+}
+
+/* 代码块样式：用于显示代码片段 */
+.code {
+    /* 字体大小 */
+    font-size: 1em;
+    /* 内边距 */
+    padding: 2px 4px;
+    /* 背景颜色：略浅于页面背景，突出代码 */
+    background-color: rgba(249, 249, 249, 0.799);
+    /* 边框 */
+    border: 1px solid darkgray;
+    /* 圆角边框 */
+    border-radius: 4px;
+}
+
+/* ====================
+   页脚样式 (Footer Styles)
+   ==================== */
+
+.footer {
+    /* 页脚文本居中对齐 */
+    text-align: center;
+    /* 页脚顶部外边距 */
+    margin-top: 50px;
+}
+
+/* 页脚内链接的样式 */
+.footer a {
+    /* 链接之间右侧间隔 */
+    margin-right: 20px;
+    /* 字体大小 */
+    font-size: 1.17em;
+    /* 链接颜色：与主体文本颜色一致 */
+    color: rgba(0, 0, 0, 0.799);
+    /* 移除默认下划线 */
+    text-decoration: none;
+}
+
+/* 页脚链接鼠标悬停效果：显示下划线 */
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* 页脚内具有 'special' id 的元素，移除右侧边距（例如，最后一个链接） */
+.footer #special {
+    margin-right: 0;
+}
+
+/* ====================
+   响应式设计 (Responsive Design)
+   ==================== */
+
+/* 当屏幕宽度小于或等于 1000px 时 */
+@media screen and (max-width: 1000px) {
+    /* 主要内容区左右边距调整为 5%，适应小屏幕 */
+    .main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+/* 当屏幕宽度小于或等于 900px 时，这在 index.css 中有，这里也考虑 */
+@media screen and (max-width: 900px) {
+    /* 确保在更小的屏幕上，主要内容区边距仍然优化 */
+    .main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+/* ====================
+   深色模式 (Dark Mode)
+   ==================== */
+
+/* 当用户系统偏好设置为深色模式时 */
+@media (prefers-color-scheme: dark) {
+    /* 页面背景颜色切换为深色 */
+    body {
+        background-color: rgba(0, 0, 0, 0.868);
+    }
+
+    /* 标题区链接颜色变为浅灰色 */
+    .title a {
+        color: rgb(190, 190, 190);
+    }
+
+    /* 主要内容区文本颜色变为浅灰色 */
+    .main {
+        color: rgb(190, 190, 190);
+    }
+
+    /* 文章区文本颜色变为浅灰色 */
+    article {
+        color: rgb(190, 190, 190);
+    }
+
+    /* 文章内链接颜色变为浅灰色 */
+    article a {
+        color: rgb(190, 190, 190);
+    }
+
+    /* 文章内链接鼠标悬停颜色变为更浅的灰色 */
+    article a:hover {
+        color: rgb(235, 235, 235);
+    }
+
+    /* 代码块背景色变为中灰色，文本颜色变为深色 */
+    .code {
+        background-color: rgb(158, 158, 158);
+        color: rgba(0, 0, 0, 0.868);
+    }
+
+    /* 主要内容区代码块内链接颜色变为深色 */
+    .main .code a {
+        color: rgba(0, 0, 0, 0.868);
+    }
+
+    /* 主要内容区代码块内链接鼠标悬停颜色变为更深的色 */
+    .main .code a:hover {
+        color: rgba(0, 0, 0, 0.968);
+    }
+
+    /* 主要内容区内链接颜色变为较深的灰色 */
+    .main a {
+        color: rgb(103, 103, 103);
+    }
+
+    /* 主要内容区内链接鼠标悬停颜色变为浅灰色 */
+    .main a:hover {
+        color: rgb(190, 190, 190);
+    }
+
+    /* 页脚链接颜色变为浅灰色 */
+    .footer a {
+        color: rgb(190, 190, 190);
+    }
+}

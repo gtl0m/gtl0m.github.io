@@ -4,35 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/about.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="shortcut icon" href="favicon.webp">
-    <title>About</title>
+    <title>Inner Quarters</title>
 </head>
 <body>
     <div class="center">
         <div class="title">
             <h1>
-                <a href="index.html">Inner Quarters/</a><span id="light">About</span>
+                <a href="../index.html">Inner Quarters/</a><span id="light">About</span>
             </h1>
         </div>
 
         <div class="main">
             <p id="clock"><span id="runtime_span"></span></p>
-            <h2>Welcome!</h2>
+
+            <h2>欢迎！</h2>
             <p>欢迎来到 Inner Quarters，这里的主人是 gtl0m。</p>
-            <p><b>2025-06-12 留言：这个纯静态的博客已经烂完了，回头会重构。不过鉴于我的 PS5 和对马岛之魂马上就要到了，什么时候会把这个博客修好我就不知道了，因为我现在的兴趣完全不在对着 vsccode 敲键盘这里。</b></p>
-            <h2>About Me</h2>
+
+            <h2>关于我</h2>
             <p>钢笔爱好者，纸媒介书写爱好者，会捣鼓捣鼓笔尖打磨；纂刻初学。</p>
 
-            <h2>About Here</h2>
+            <h2>关于这里</h2>
             <p><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">原创文章使用 CC BY-NC 4.0</a></p>
             <p>
-                <span class="code">Inner Quarters</span> 的名字来自「キャッスルヴァニア 暁月の円舞曲」，
-                相应的日语为 <span class="code">幻夢宮</span>。这个地区给我的印象十分深刻，
+                <span class="code">Inner Quarters</span> 的名字来自「キャッスルヴァニア 暁月の円舞曲」，相应的日语为 <span class="code">幻夢宮</span>。这个地区给我的印象十分深刻，
                 然后我就拿来做了博客名。
             </p>
             <p>
-                博客是自己糊的，纯静态，极小体积，托管于 GitHub。一定程度上吸收了 <a href="http://motherfuckingwebsite.com/" target="_blank">暴躁老哥的观点</a>，力图简洁。
+                博客是自己写的，现在你看到的这一版是使用 Gemini 2.5 Flash 辅助重构的版本。纯静态，极小体积，托管于 GitHub，力图简洁。只使用了 html 和 css，因为我只会这俩。我对写这类东西不感兴趣。所以重构的时候才会使用 ai 工具。
             </p>
         </div>
 
@@ -43,21 +43,54 @@
     </div>
 
     <script type="text/javascript">
+        /**
+         * @function show_runtime
+         * @description 动态显示网站的运行时间。
+         * 从指定日期“2022年10月27日 12:00:00”开始计算到当前时间。
+         * 每秒更新一次。
+         */
         function show_runtime() {
+            // 设置定时器，每1000毫秒（1秒）调用一次自身，实现动态更新
             window.setTimeout("show_runtime()", 1000);
-            X = new Date("10/27/2022 12:00:00");
-            Y = new Date();
-            T = (Y.getTime() - X.getTime());
-            M = 24 * 60 * 60 * 1000;
-            a = T / M;
-            A = Math.floor(a);
-            b = (a - A) * 24;
-            B = Math.floor(b);
-            c = (b - B) * 60;
-            C = Math.floor((b - B) * 60);
-            D = Math.floor((c - C) * 60);
-            runtime_span.innerHTML = "|gtl0m's Inner Quarters : " + A + " days " + B + " hours " + C + " mins " + D + " secs|"
+
+            // 定义网站的起始运行日期和时间
+            const startDate = new Date("10/27/2022 12:00:00");
+            // 获取当前日期和时间
+            const currentDate = new Date();
+
+            // 计算时间差（毫秒）
+            const timeDifference = currentDate.getTime() - startDate.getTime();
+
+            // 定义一天的毫秒数
+            const millisecondsPerDay = 24 * 60 * 60 * 1000;
+
+            // 计算天数
+            const days = Math.floor(timeDifference / millisecondsPerDay);
+
+            // 计算剩余的毫秒数（不足一天的部分）
+            const remainingMillisecondsAfterDays = timeDifference % millisecondsPerDay;
+
+            // 计算小时数
+            const hours = Math.floor(remainingMillisecondsAfterDays / (60 * 60 * 1000));
+
+            // 计算剩余的毫秒数（不足一小时的部分）
+            const remainingMillisecondsAfterHours = remainingMillisecondsAfterDays % (60 * 60 * 1000);
+
+            // 计算分钟数
+            const minutes = Math.floor(remainingMillisecondsAfterHours / (60 * 1000));
+
+            // 计算剩余的毫秒数（不足一分钟的部分）
+            const remainingMillisecondsAfterMinutes = remainingMillisecondsAfterHours % (60 * 1000);
+
+            // 计算秒数
+            const seconds = Math.floor(remainingMillisecondsAfterMinutes / 1000);
+
+            // 更新HTML元素显示运行时间
+            // 查找id为 "runtime_span" 的元素并更新其内容
+            document.getElementById("runtime_span").innerHTML = "|gtl0m's Inner Quarters : " + days + " 天 " + hours + " 小时 " + minutes + " 分 " + seconds + " 秒|";
         }
+
+        // 页面加载后立即调用一次函数，显示初始运行时间
         show_runtime();
     </script>
 
