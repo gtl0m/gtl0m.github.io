@@ -145,7 +145,7 @@ article a:hover {
     text-align: center;
 }
 
-/* 具有 'clock' id 的元素（如果用于显示时钟等），文本居中 */
+/* 具有 'clock' id 的元素，文本居中 */
 #clock {
     text-align: center;
 }
