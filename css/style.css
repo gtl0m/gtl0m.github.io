@@ -13,15 +13,13 @@ body {
     font-family: sans-serif, Arial;
     /* 页面底部留白，防止内容紧贴底部 */
     margin-bottom: 100px;
+    
+    /* [新增] 全局颜色过渡：深色模式切换时更柔和 */
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* 所有标题标签 (h1-h6) 默认使用普通字重，避免过于粗重 */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
@@ -30,6 +28,26 @@ h6 {
     margin-left: 5%;
     width: 90%;
     margin-right: 5%;
+}
+
+/* ====================
+   动画定义 (Keyframes)
+   ==================== */
+
+/* [新增] 元素向上浮现并带有回弹效果的入场动画 */
+@keyframes fadeInUpSpring {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-5px) scale(1.01);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 /* ====================
@@ -42,11 +60,15 @@ h6 {
     /* 上下外边距，为标题区提供足够的空间 */
     margin-top: 50px;
     margin-bottom: 50px;
+    
+    /* [新增] 入场动画：页面加载时标题区浮现 */
+    animation: fadeInUpSpring 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 /* 标题区内具有 'light' id 的元素（如副标题），颜色为灰色 */
 .title #light {
     color: grey;
+    transition: color 0.3s ease;
 }
 
 /* 标题区内的链接样式 */
@@ -57,13 +79,35 @@ h6 {
     font-size: 1.17em;
     /* 链接颜色：与主体文本颜色一致 */
     color: rgba(0, 0, 0, 0.799);
-    /* 移除默认下划线 */
+    /* 移除默认下划线，改用动画实现 */
     text-decoration: none;
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease;
 }
 
-/* 标题区链接鼠标悬停效果：显示下划线 */
+/* [新增] 标题链接下划线动画：从中心向两边展开 */
+.title a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    background-color: rgba(0, 0, 0, 0.799);
+    transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), left 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.title a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* 移除旧的 hover 下划线，改用上面的 ::after 动画 */
 .title a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    /* [新增] 微微上浮 */
+    transform: translateY(-1px);
 }
 
 /* ====================
@@ -75,6 +119,10 @@ article {
     text-align: center;
     /* 文章底部外边距 */
     margin-bottom: 20px;
+    
+    /* [新增] 入场动画：比标题稍晚出现 */
+    opacity: 0; /* 初始隐藏 */
+    animation: fadeInUpSpring 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
 }
 
 /* 文章内的链接样式 */
@@ -85,13 +133,16 @@ article a {
     color: grey;
     /* 移除默认下划线 */
     text-decoration: none;
+    display: inline-block; /* 允许 transform 生效 */
+    
+    /* [新增] 颜色和形变过渡 */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* 文章链接鼠标悬停效果：颜色变为深灰色，带有平滑过渡 */
+/* 文章链接鼠标悬停效果：颜色变为深灰色，带有放大回弹 */
 article a:hover {
     color: rgba(0, 0, 0, 0.799);
-    /* 过渡效果：0.1秒，使用 cubic-bezier 函数实现平滑动画 */
-    transition: color .1s cubic-bezier(.68,.07,.68,.53);
+    transform: scale(1.05) translateX(5px); /* 放大并微微右移 */
 }
 
 /* 主要内容区域 */
@@ -101,6 +152,10 @@ article a:hover {
     margin-right: 17%;
     /* 行高，提高文本可读性 */
     line-height: 1.7;
+    
+    /* [新增] 入场动画：比文章列表稍晚出现 */
+    opacity: 0;
+    animation: fadeInUpSpring 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
 }
 
 /* 主要内容区段落的底部外边距 */
@@ -117,12 +172,16 @@ article a:hover {
 .main a {
     color: grey;
     text-decoration: none;
+    border-bottom: 1px solid transparent; /* 预留边框位置 */
+    transition: all 0.2s ease-in-out;
 }
 
-/* 主要内容区内链接鼠标悬停效果：颜色变为深灰色，带有平滑过渡 */
+/* 主要内容区内链接鼠标悬停效果 */
 .main a:hover {
     color: rgba(0, 0, 0, 0.799);
-    transition: color .1s cubic-bezier(.68,.07,.68,.53);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.799);
+    background-color: rgba(0, 0, 0, 0.05); /* 轻微背景高亮 */
+    border-radius: 2px;
 }
 
 /* 主要内容区内图片的样式 */
@@ -138,6 +197,15 @@ article a:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     /* 轻微圆角 */
     border-radius: 4px;
+    
+    /* [新增] 图片过渡效果 */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+/* [新增] 图片悬停交互：放大并增加阴影（浮起感） */
+.main img:hover {
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.25), 0 10px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
 /* 居中文本的通用类 */
@@ -148,6 +216,7 @@ article a:hover {
 /* 具有 'clock' id 的元素，文本居中 */
 #clock {
     text-align: center;
+    transition: opacity 0.5s ease;
 }
 
 /* 代码块样式：用于显示代码片段 */
@@ -162,6 +231,17 @@ article a:hover {
     border: 1px solid darkgray;
     /* 圆角边框 */
     border-radius: 4px;
+    
+    /* [新增] 代码块交互过渡 */
+    display: inline-block; /* 允许变换 */
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* [新增] 代码块悬停效果 */
+.code:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 1);
 }
 
 /* ====================
@@ -173,6 +253,10 @@ article a:hover {
     text-align: center;
     /* 页脚顶部外边距 */
     margin-top: 50px;
+    
+    /* [新增] 入场动画：最后出现 */
+    opacity: 0;
+    animation: fadeInUpSpring 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards;
 }
 
 /* 页脚内链接的样式 */
@@ -185,11 +269,29 @@ article a:hover {
     color: rgba(0, 0, 0, 0.799);
     /* 移除默认下划线 */
     text-decoration: none;
+    position: relative;
+    display: inline-block;
 }
 
-/* 页脚链接鼠标悬停效果：显示下划线 */
+/* [新增] 页脚链接下划线动画（同 Header） */
+.footer a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -1px;
+    left: 50%;
+    background-color: rgba(0, 0, 0, 0.799);
+    transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), left 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.footer a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
 .footer a:hover {
-    text-decoration: underline;
+    text-decoration: none; /* 确保不显示默认下划线 */
 }
 
 /* 页脚内具有 'special' id 的元素，移除右侧边距（例如，最后一个链接） */
@@ -210,7 +312,7 @@ article a:hover {
     }
 }
 
-/* 当屏幕宽度小于或等于 900px 时，这在 index.css 中有，这里也考虑 */
+/* 当屏幕宽度小于或等于 900px 时 */
 @media screen and (max-width: 900px) {
     /* 确保在更小的屏幕上，主要内容区边距仍然优化 */
     .main {
@@ -228,11 +330,17 @@ article a:hover {
     /* 页面背景颜色切换为深色 */
     body {
         background-color: rgba(0, 0, 0, 0.868);
+        color: rgb(190, 190, 190); /* [新增] 确保 body 文字颜色也变化 */
     }
 
     /* 标题区链接颜色变为浅灰色 */
     .title a {
         color: rgb(190, 190, 190);
+    }
+    
+    /* [新增] 深色模式下标题链接下划线颜色 */
+    .title a::after {
+        background-color: rgb(190, 190, 190);
     }
 
     /* 主要内容区文本颜色变为浅灰色 */
@@ -257,33 +365,57 @@ article a:hover {
 
     /* 代码块背景色变为中灰色，文本颜色变为深色 */
     .code {
-        background-color: rgb(158, 158, 158);
-        color: rgba(0, 0, 0, 0.868);
+        background-color: rgb(60, 60, 60); /* [调整] 深色模式代码背景稍深一点更护眼 */
+        color: rgb(220, 220, 220);
+        border: 1px solid rgb(80, 80, 80);
+    }
+    
+    .code:hover {
+        background-color: rgb(70, 70, 70);
+        border-color: rgb(120, 120, 120);
     }
 
     /* 主要内容区代码块内链接颜色变为深色 */
     .main .code a {
-        color: rgba(0, 0, 0, 0.868);
+        color: rgb(220, 220, 220);
     }
 
     /* 主要内容区代码块内链接鼠标悬停颜色变为更深的色 */
     .main .code a:hover {
-        color: rgba(0, 0, 0, 0.968);
+        color: white;
     }
 
     /* 主要内容区内链接颜色变为较深的灰色 */
     .main a {
-        color: rgb(103, 103, 103);
+        color: rgb(150, 150, 150); /* 提高对比度 */
     }
 
     /* 主要内容区内链接鼠标悬停颜色变为浅灰色 */
     .main a:hover {
-        color: rgb(190, 190, 190);
+        color: rgb(230, 230, 230);
+        background-color: rgba(255, 255, 255, 0.1);
+        border-bottom-color: rgb(230, 230, 230);
     }
 
     /* 页脚链接颜色变为浅灰色 */
     .footer a {
         color: rgb(190, 190, 190);
+    }
+    
+    /* [新增] 深色模式下页脚链接下划线颜色 */
+    .footer a::after {
+        background-color: rgb(190, 190, 190);
+    }
+    
+    /* [新增] 深色模式下图片阴影调整（白色光晕或更深阴影） */
+    .main img {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+        opacity: 0.9; /* 稍微降低亮度防止刺眼 */
+    }
+    
+    .main img:hover {
+        opacity: 1;
+        box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.6), 0 10px 15px 0 rgba(0, 0, 0, 0.5);
     }
 }
 
